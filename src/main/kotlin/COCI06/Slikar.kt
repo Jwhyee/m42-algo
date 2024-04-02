@@ -18,10 +18,10 @@ import kotlin.math.min
  * - 'D', 'S' 는 오직 한 개만 주어진다.
  * */
 
-const val PAINTER = 'S' // 83
-const val BEAVER = 'D' // 68
-const val WATER = '*' // 42
-const val FIELD = '.'
+private const val PAINTER = 'S' // 83
+private const val BEAVER = 'D' // 68
+private const val WATER = '*' // 42
+private const val FIELD = '.'
 private data class Pos(val c: Char, val y: Int, val x: Int, val cnt: Int)
 fun main() = with(System.`in`.bufferedReader()) {
    // 첫 줄에 지도의 크기 R, C가 주어진다.

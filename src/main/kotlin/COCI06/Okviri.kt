@@ -7,8 +7,8 @@ package COCI06
  * ### 요구사항
  * - 입력은 오직 첫 줄에만 최대 15자의 대문자만 들어온다.
  * */
-var curPosition = 0
-lateinit var result: Array<CharArray>
+private var curPosition = 0
+private lateinit var result: Array<CharArray>
 fun main() = with(System.`in`.bufferedReader()) {
    val text = readLine()
 
@@ -43,7 +43,7 @@ private enum class FrameType(val c: Char) {
    PETER_PAN('#'),
    WENDY('*');
 }
-fun makeFrame(str: String) {
+private fun makeFrame(str: String) {
    curPosition++
    repeat(5) { idx ->
       // 만약 현재 문자열이 #인데, 이미 격자에 *이 찍혀있을 경우에는 그러지 않고 넘어간다.
