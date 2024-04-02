@@ -1,5 +1,6 @@
 package COCI06
 
+import kotlin.math.max
 /**
  * ### 문제 설명
  * - 비밀 요원 207인 유명한 제임스 본드는 모두가 안다.
@@ -14,8 +15,6 @@ package COCI06
  * - 각 수는 지미 본드가 미션을 성공적으로 완수할 확률이다.
  * - 지미 본드가 모든 미션을 성공적으로 완수할 확률의 최댓값을 백분율로 출력해라.
  * */
-
-import kotlin.math.max
 
 private lateinit var jimmy: IntArray
 private lateinit var visited: BooleanArray
