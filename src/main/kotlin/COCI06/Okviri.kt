@@ -6,6 +6,7 @@ package COCI06
  * - 그러나 모든 프레임이 같으면 재미없기 때문에 매 세 번째 문자마다 웬디 프레임을 적용한다.
  * ### 요구사항
  * - 입력은 오직 첫 줄에만 최대 15자의 대문자만 들어온다.
+ * > [링크](https://dmoj.ca/problem/coci06c1p3)
  * */
 private var curPosition = 0
 private lateinit var result: Array<CharArray>

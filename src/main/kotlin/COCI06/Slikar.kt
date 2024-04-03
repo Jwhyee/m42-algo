@@ -16,6 +16,7 @@ import kotlin.math.min
  * ### 제한 사항
  * - '.', '*', 'X' 는 여러 개가 주어질 수 있다.
  * - 'D', 'S' 는 오직 한 개만 주어진다.
+ * > [링크](https://dmoj.ca/problem/coci06c1p5)
  * */
 
 private const val PAINTER = 'S' // 83
