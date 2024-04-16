@@ -1,9 +1,8 @@
-package COCI06
+package COCI06.contest1
 
 import java.lang.IllegalArgumentException
 import kotlin.math.PI
 import kotlin.math.pow
-import kotlin.math.sqrt
 
 /**
  * investigated a non-Euclidean geometry : 비유클리드 기하학

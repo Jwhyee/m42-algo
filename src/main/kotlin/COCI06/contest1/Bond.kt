@@ -1,4 +1,4 @@
-package COCI06
+package COCI06.contest1
 
 import kotlin.math.max
 /**
