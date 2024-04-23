@@ -16,7 +16,8 @@
 
 ## 과제
 
-|       날짜        |                                        링크                                         |
-|:---------------:|:---------------------------------------------------------------------------------:|
-| 1주차(3.25 ~ 4.3) | [COCI '06 Contest 1](https://dmoj.ca/problems/?search=COCI%20%2706%20Contest%201) |
-| 2주차(4.3 ~ 4.10) |    [COCI '06 Contest 2](https://dmoj.ca/problems/?search=COCI+%2706+Contest+2)    |
+|        날짜        |                                        링크                                         |
+|:----------------:|:---------------------------------------------------------------------------------:|
+| 1주차(3.25 ~ 4.3)  | [COCI '06 Contest 1](https://dmoj.ca/problems/?search=COCI%20%2706%20Contest%201) |
+| 2주차(4.3 ~ 4.10)  |    [COCI '06 Contest 2](https://dmoj.ca/problems/?search=COCI+%2706+Contest+2)    |
+| 3주차(4.17 ~ 4.24) |    [COCI '06 Contest 2](https://dmoj.ca/problems/?search=COCI+%2706+Contest+3)    |
