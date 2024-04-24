@@ -6,7 +6,7 @@ import java.util.StringTokenizer
  * ### 문제 설명
  * - 멀리 떨어진 땅에서 자전거 경주가 열렸다.
  * - 거기에는 N개의 마을이 있고, 1 ~ N까지 번호가 붙어있다.
- * - 또한 M개의 각 마을 사이에 길이 있다.
+ * - 각 마을 사이에 M개의 길이 있다.
  * - 이 경주는 1번 마을에서 시작하고, 2번 마을에서 끝이 난다.
  * - 얼마나 많은 다른 방법으로 갈 수 있는지 구해라.
  * - 동일한 도로를 이용하지 않을 경우 다른 것으로 간주한다.
@@ -15,6 +15,7 @@ import java.util.StringTokenizer
  * - M개의 줄에 2가지 다른 정수 A, B가 주어지고, 이는 마을 사이의 길을 나타낸다.
  * - 첫 줄에 고유 경로 수를 출력하되, 만약 9자리를 넘을 경우 마지막 9자리만 출력해라.
  * - 경로가 무한히 많을 경우 inf를 출력하라.
+ * - [링크](https://dmoj.ca/problem/coci06c3p5)
 * */
 private var cnt = 0
 
@@ -43,7 +44,7 @@ fun main() = with(System.`in`.bufferedReader()) {
       backTracking(1, graph)
       val result = cnt.toString()
       if (result.length > 9) {
-         println(result.subSequence(result.length - 9, result.length))
+         println(result.substring(result.length - 9, result.length))
       } else {
          println(result)
       }
