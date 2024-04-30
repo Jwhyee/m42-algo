@@ -19,6 +19,41 @@ import java.util.StringTokenizer
 * */
 private var cnt = 0
 
+/*
+
+* 6 7
+  1 3
+  1 4
+  3 2
+  4 2
+  5 6
+  6 5
+  3 4
+
+  3
+  1 -> 3 -> 2
+  1 -> 3 -> 4 -> 2
+  1 -> 4 -> 2
+
+  6 8
+  1 3
+  1 4
+  3 2
+  4 2
+  5 6
+  6 5
+  3 4
+  4 3
+  1 -> 3 -> 4 -> 2
+  1 -> 3 -> 4 -> 3 -> 2
+  1 -> 3 -> 4 -> 3 -> 4 -> 2
+  1 -> 3 -> 4 -> 3 -> 4 -> 3 -> 2
+  1 -> 3 -> 4 -> 3 -> 4 -> 3 -> 4 -> 2
+*
+*
+* */
+
+
 fun main() = with(System.`in`.bufferedReader()) {
    val (n, m) = StringTokenizer(readLine()).run {
       (nextToken().toIntOrNull() ?: 0) to (nextToken().toIntOrNull() ?: 0)

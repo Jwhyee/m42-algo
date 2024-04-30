@@ -4,6 +4,7 @@ import java.lang.StringBuilder
 import java.util.LinkedList
 import java.util.Queue
 import java.util.StringTokenizer
+import kotlin.math.min
 
 /**
  * ### 문제 설명
@@ -17,9 +18,8 @@ import java.util.StringTokenizer
  * - 다음 M개의 줄에는 미르코가 움직인 A 혹은 B에 대한 정보와 X, Y에 대한 정보가 주어진다.
  * - A -> 노드 X를 Y앞으로 옮긴다.
  * - B -> 노드 X를 Y뒤로 옮긴다.
+ * - [링크](https://dmoj.ca/problem/coci06c3p6)
  * */
-private lateinit var ordered: Array<Boolean>
-
 fun main() = with(System.`in`.bufferedReader()) {
    val (n, m) = StringTokenizer(readLine()).run {
       (nextToken().toIntOrNull() ?: 0) to (nextToken().toIntOrNull() ?: -1)
@@ -34,7 +34,6 @@ fun main() = with(System.`in`.bufferedReader()) {
 
    println()
    println(queue)
-   ordered = Array(n + 1) { false }
 
    // 미르코가 움직인 로그대로 순서 변경
    repeat(m) {
@@ -44,19 +43,19 @@ fun main() = with(System.`in`.bufferedReader()) {
       when (c) {
          'A' -> {
             insertAtInFrontOfY(queue, x, y)
-            println(queue)
          }
          'B' -> {
             insertAtAfterY(queue, x, y)
-            println(queue)
          }
       }
+      println("queue = $queue")
    }
 
-   restoreList(queue)
+   restoreList2(queue)
+//   restoreList(queue)
 }
 
-private fun restoreList(queue: Queue<Int>) {
+/*private fun restoreList(queue: Queue<Int>) {
    val sb = StringBuilder()
    val size = queue.size - 1
    var arr = queue.toTypedArray()
@@ -79,35 +78,102 @@ private fun restoreList(queue: Queue<Int>) {
          println("A $next $cur")
          sb.append("A $next $cur")
          insertAtInFrontOfY(queue, next, cur)
-         println(queue)
       } else {
          println("B $cur $next")
          sb.append("B $cur $next")
          insertAtAfterY(queue, cur, next)
-         println(queue)
       }
+      println(queue)
       arr = queue.toTypedArray()
+   }
+}*/
+
+private fun restoreList2(queue: Queue<Int>) {
+   val size = queue.size - 1
+   for (i in 0..<size) {
+      val arr = queue.toTypedArray()
+      visited = BooleanArray(queue.size)
+      println("[$i] / origin = ${arr.joinToString(", ")}")
+      backTracking(queue.size, 0, arr[i], 0, arr)
+      println("minCnt = $minCnt")
+   }
+}
+var minCnt = Int.MAX_VALUE
+private lateinit var visited: BooleanArray
+private fun backTracking(n: Int, depth: Int, cur: Int, cnt: Int, arr: Array<Int>) {
+   if (isOrdered(arr)) {
+      minCnt = min(minCnt, cnt)
+      return
+   }
+   if(depth == n) return
+
+   for (i in arr.indices) {
+      if (!visited[i]) {
+         visited[i] = true
+         val next = arr[i]
+         if(cur == next) continue
+
+         val aResult = insertAtInFrontOfY(arr, cur, next)
+         println("[$i, $cnt] aResult = ${aResult.joinToString(", ")}")
+         backTracking(n, depth + 1, next, cnt + 1, aResult)
+
+         val bResult = insertAtAfterY(arr, cur, next)
+         println("[$i, $cnt] bResult = ${bResult.joinToString(", ")}")
+         backTracking(n, depth + 1, next, cnt + 1, bResult)
+         visited[i] = false
+      }
    }
 }
 
-private fun isOrdered(queue: Queue<Int>): Boolean {
+private fun isOrdered(arr: Array<Int>): Boolean {
    var temp = 0
-   for (number in queue) {
-      if (number == temp + 1) {
-         temp = number
-         ordered[number] = true
-      }
-      else return false
+   for (number in arr) {
+      if(number - temp != 1) return false
+      temp = number
    }
    return true
 }
 
-/** 노드 X를 Y 앞으로 옮긴다. */
+
+private fun insertAtInFrontOfY(arr: Array<Int>, x: Int, y: Int): Array<Int> {
+   val queue: Queue<Int> = LinkedList(arr.toMutableList())
+   val size = queue.size
+   for (i in 0..<size) {
+      when (val cur = queue.poll()) {
+         x -> {}
+         y -> {
+            queue += x
+            queue += y
+         }
+         else -> queue += cur
+      }
+   }
+   println("x = $x / y = $y / ${queue.joinToString(", ")}")
+   return queue.toTypedArray()
+}
+
+
+private fun insertAtAfterY(arr: Array<Int>, x: Int, y: Int): Array<Int> {
+   val queue: Queue<Int> = LinkedList(arr.toMutableList())
+   val size = queue.size
+   for (i in 0..<size) {
+      when (val cur = queue.poll()) {
+         x -> {}
+         y -> {
+            queue += y
+            queue += x
+         }
+         else -> queue += cur
+      }
+   }
+   return queue.toTypedArray()
+}
+
+/** A : 노드 X를 Y 앞으로 옮긴다. */
 private fun insertAtInFrontOfY(queue: Queue<Int>, x: Int, y: Int) {
    val size = queue.size
    for (i in 0..<size) {
-      val cur = queue.poll()
-      when (cur) {
+      when (val cur = queue.poll()) {
          x -> {}
          y -> {
             queue += x
@@ -118,12 +184,11 @@ private fun insertAtInFrontOfY(queue: Queue<Int>, x: Int, y: Int) {
    }
 }
 
-/** 노드 X를 Y 뒤로 옮긴다 */
-private fun insertAtAfterY(queue: Queue<Int>, x: Int, y: Int) {
+/** B : 노드 X를 Y 뒤로 옮긴다 */
+private fun insertAtAfterY(queue: Queue<Int>, x: Int, y: Int){
    val size = queue.size
    for (i in 0..<size) {
-      val cur = queue.poll()
-      when (cur) {
+      when (val cur = queue.poll()) {
          x -> {}
          y -> {
             queue += y
