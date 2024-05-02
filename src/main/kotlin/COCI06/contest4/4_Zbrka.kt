@@ -47,7 +47,7 @@ import java.util.StringTokenizer
  * |       -      |   1  |   3  |   5  |   6  |   5  |   3  |   1  |
  *
  * - 맨 앞이 1일 때, 0개 나올 수 있는 수 -> 1개
- *
+ * - [링크](https://dmoj.ca/problem/coci06c4p4)
  * */
 private const val MOD = 1_000_000_007
 fun main() = with(System.`in`.bufferedReader()) {
